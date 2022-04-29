@@ -1,4 +1,5 @@
 import { foodOrder } from "../data/FoodImage";
+import { RiDeleteBin6Line } from "react-icons/ri";
 const Ordertab = () => {
   return (
     <>
@@ -16,7 +17,7 @@ const Ordertab = () => {
           </div>
           <div className="flex flex-col">
             <span className="text-md font-semibold">GHS {food.price}</span>
-            <span className="ml-8 ">Del</span>
+            <RiDeleteBin6Line className="ml-10" />
           </div>
         </div>
       ))}
