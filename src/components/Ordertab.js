@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { foodOrder } from "../data/FoodImage";
 import { RiDeleteBin6Line } from "react-icons/ri";
 const Ordertab = () => {
+  const [orderedFood, setOrderedfood] = useState(foodOrder);
+  const deleteOrder = (id) => {
+    const filtered = orderedFood.filter((item) => item.id !== id);
+    setOrderedfood(filtered);
+  };
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
-      {foodOrder.map((food) => (
-        <div className="flex justify-around items-center ">
+      {orderedFood.map((food) => (
+        <div key={food.id} className="flex justify-around items-center ">
           <img
             className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
             src={food.image}
@@ -16,8 +22,11 @@ const Ordertab = () => {
             <span>counter</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-md font-semibold">GHS {food.price}</span>
-            <RiDeleteBin6Line className="ml-10" />
+            <span className="text-md font-semibold m-2">GHS {food.price}</span>
+            <RiDeleteBin6Line
+              className="ml-12 cursor-pointer"
+              onClick={() => deleteOrder(food.id)}
+            />
           </div>
         </div>
       ))}

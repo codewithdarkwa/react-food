@@ -54,9 +54,8 @@ const FoodItem = () => {
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
         {foodData.map((food) => (
-          <div>
+          <div key={food.id}>
             <img
-              key={food.id}
               className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
               src={food.image}
               alt="foodimage"
