@@ -3,6 +3,7 @@ import { foodData } from "../data/FoodImage";
 
 export const Category = () => {
   const [active, setActive] = useState("All");
+  const [order, setOrder] = useState(foodData);
   const Buttons = [
     { text: "All" },
     { text: "Burger" },
@@ -26,15 +27,15 @@ export const Category = () => {
           setActive={setActive}
         />
       ))}
-      <FoodItem />
+      <FoodItem order={order} setOrder={setOrder} />
     </>
   );
 };
 const CategoryButton = ({ text, active, setActive }) => {
   return (
     <button
-      className={`bg-${
-        active === text ? "green-500" : "white"
+      className={`${
+        active === text ? "bg-green-500" : "white"
       } px-4 rounded-lg  m-3 shadow-lg`}
       onClick={() => setActive(text)}
     >
@@ -49,21 +50,27 @@ const CategoryButton = ({ text, active, setActive }) => {
   );
 };
 
-const FoodItem = () => {
+const FoodItem = ({ order, setOrder }) => {
+  const [orderedFood, setOrderedFood] = useState([]);
+  const Ordered = (food) => {
+    return setOrderedFood([...orderedFood, food]);
+  };
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
-        {foodData.map((food) => (
+        {order.map((food) => (
           <div key={food.id}>
-            <img
-              className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
-              src={food.image}
-              alt="foodimage"
-            />
-            <div className="flex flex-col ">
-              <span className="text-md font-semibold">{food.name}</span>
-              <span className="text-gray-500">GHS {food.price}</span>
-            </div>
+            <button className="cursor-pointer" onClick={() => Ordered(food)}>
+              <img
+                className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
+                src={food.image}
+                alt="foodimage"
+              />
+              <div className="flex flex-row justify-between m-1 ">
+                <span className="text-md font-semibold">{food.name}</span>
+                <span className="text-gray-500">GHS {food.price}</span>
+              </div>
+            </button>
           </div>
         ))}
       </div>
