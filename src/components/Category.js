@@ -2,9 +2,8 @@ import { useState, useContext } from "react";
 import { Foodcontext } from "../context/Foodcontext";
 
 export const Category = () => {
-  const { foodData } = useContext(Foodcontext);
   const [active, setActive] = useState("All");
-  const [order, setOrder] = useState(foodData);
+
   const Buttons = [
     { text: "All" },
     { text: "Burger" },
@@ -28,7 +27,7 @@ export const Category = () => {
           {...button}
         />
       ))}
-      <FoodItem order={order} setOrder={setOrder} />
+      <FoodItem />
     </>
   );
 };
@@ -51,7 +50,8 @@ const CategoryButton = ({ text, active, setActive }) => {
   );
 };
 
-const FoodItem = ({ order, setOrder }) => {
+const FoodItem = () => {
+  const { foodData } = useContext(Foodcontext);
   const [orderedFood, setOrderedFood] = useState([]);
   const Ordered = (food) => {
     return setOrderedFood([...orderedFood, food]);
@@ -59,7 +59,7 @@ const FoodItem = ({ order, setOrder }) => {
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
-        {order.map((food) => (
+        {foodData.map((food) => (
           <div key={food.id}>
             <button className="cursor-pointer" onClick={() => Ordered(food)}>
               <img

@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
-import { foodOrder } from "../context/data/FoodImage";
+
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Foodcontext } from "../context/Foodcontext";
 
 const Ordertab = () => {
-  const { foodData } = useContext(Foodcontext);
-  console.log(foodData);
+  const { foodOrder } = useContext(Foodcontext);
   const [orderedFood, setOrderedfood] = useState(foodOrder);
   const deleteOrder = (id) => {
     const filtered = orderedFood.filter((item) => item.id !== id);
