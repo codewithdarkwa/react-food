@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { foodData } from "../data/FoodImage";
+import { useState, useContext } from "react";
+import { Foodcontext } from "../context/Foodcontext";
 
 export const Category = () => {
+  const { foodData } = useContext(Foodcontext);
   const [active, setActive] = useState("All");
   const [order, setOrder] = useState(foodData);
   const Buttons = [
@@ -22,9 +23,9 @@ export const Category = () => {
       {Buttons.map((button) => (
         <CategoryButton
           key={button.text}
-          text={button.text}
           active={active}
           setActive={setActive}
+          {...button}
         />
       ))}
       <FoodItem order={order} setOrder={setOrder} />
