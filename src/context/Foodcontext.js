@@ -1,9 +1,9 @@
 import { createContext, useReducer } from "react";
 import reducer from "./reducer";
-import { foodData, foodOrder } from "./data/FoodImage";
-const initialState = {
+import { foodData } from "./data/FoodImage";
+let initialState = {
   foodData,
-  foodOrder,
+  foodOrder: [],
 };
 export const Foodcontext = createContext(initialState);
 

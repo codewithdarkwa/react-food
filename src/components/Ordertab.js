@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoAddOutline } from "react-icons/io5";
+import { BiMinus } from "react-icons/bi";
 import { Foodcontext } from "../context/Foodcontext";
 
 const Ordertab = () => {
@@ -13,8 +15,8 @@ const Ordertab = () => {
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
-      {orderedFood.map((food) => (
-        <OrderedFoodComponent food={food} deleteOrder={deleteOrder} />
+      {orderedFood.map((food, i) => (
+        <OrderedFoodComponent key={i} food={food} deleteOrder={deleteOrder} />
       ))}
       <div className="flex justify-center items-center m-2 mt-8 bg-[#d8f3d0] rounded-md">
         <span className="m-2 font-semibold text-[#90bf7e]">
@@ -64,13 +66,11 @@ function OrderedFoodComponent({ food, deleteOrder }) {
       <div className="flex flex-col">
         <span className="text-md font-semibold">{food.name}</span>
         <div className="flex items-center justify-around border w-16">
-          <button onClick={() => setCounter(counter + 1)} className="font-bold">
-            +
-          </button>
+          <BiMinus
+            onClick={() => (counter <= 0 ? 0 : setCounter(counter - 1))}
+          />
           <span className="font-semibold">{counter}</span>
-          <button onClick={() => setCounter(counter - 1)} className="font-bold">
-            -
-          </button>
+          <IoAddOutline onClick={() => setCounter(counter + 1)} />
         </div>
       </div>
       <div className="flex flex-col">

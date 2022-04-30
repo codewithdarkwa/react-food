@@ -51,30 +51,38 @@ const CategoryButton = ({ text, active, setActive }) => {
 };
 
 const FoodItem = () => {
-  const { foodData } = useContext(Foodcontext);
+  const { foodData, foodOrder } = useContext(Foodcontext);
   const [orderedFood, setOrderedFood] = useState([]);
-  const Ordered = (food) => {
-    return setOrderedFood([...orderedFood, food]);
+  console.log(foodOrder);
+  let Ordered = (food) => {
+    setOrderedFood([...orderedFood, food]);
   };
+  // console.log(orderedFood);
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
         {foodData.map((food) => (
-          <div key={food.id}>
-            <button className="cursor-pointer" onClick={() => Ordered(food)}>
-              <img
-                className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
-                src={food.image}
-                alt="foodimage"
-              />
-              <div className="flex flex-row justify-between m-1 ">
-                <span className="text-md font-semibold">{food.name}</span>
-                <span className="text-gray-500">GHS {food.price}</span>
-              </div>
-            </button>
-          </div>
+          <FoodImage food={food} Ordered={Ordered} key={food.id} />
         ))}
       </div>
     </>
+  );
+};
+
+const FoodImage = ({ food, Ordered }) => {
+  return (
+    <div>
+      <button className="cursor-pointer" onClick={() => Ordered(food)}>
+        <img
+          className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
+          src={food.image}
+          alt="foodimage"
+        />
+        <div className="flex flex-row justify-between m-1 ">
+          <span className="text-md font-semibold">{food.name}</span>
+          <span className="text-gray-500">GHS {food.price}</span>
+        </div>
+      </button>
+    </div>
   );
 };

@@ -1,4 +1,4 @@
-export const foodData = [
+export let foodData = [
   {
     id: 1,
     name: "Pizza",
@@ -61,23 +61,23 @@ export const foodData = [
   },
 ];
 
-export const foodOrder = [
-  {
-    id: 1,
-    name: "Pizza",
-    image: require("../../images/04e40da3-0ddd-4d29-bd6a-11485b3aee0c.jpg"),
-    price: 20,
-  },
-  {
-    id: 2,
-    name: "Pizza",
-    image: require("../../images/080a998a-f577-4316-a5b5-35fda3292007.jpg"),
-    price: 40,
-  },
-  {
-    id: 3,
-    name: "Pizza",
-    image: require("../../images/0931a077-18c1-43bb-8d58-494bfe6e6f69.jpg"),
-    price: 10,
-  },
-];
+// export let foodOrder = [
+//   {
+//     id: 1,
+//     name: "Pizza",
+//     image: require("../../images/04e40da3-0ddd-4d29-bd6a-11485b3aee0c.jpg"),
+//     price: 20,
+//   },
+//   {
+//     id: 2,
+//     name: "Pizza",
+//     image: require("../../images/080a998a-f577-4316-a5b5-35fda3292007.jpg"),
+//     price: 40,
+//   },
+//   {
+//     id: 3,
+//     name: "Pizza",
+//     image: require("../../images/0931a077-18c1-43bb-8d58-494bfe6e6f69.jpg"),
+//     price: 10,
+//   },
+// ];
