@@ -14,24 +14,7 @@ const Ordertab = () => {
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
       {orderedFood.map((food) => (
-        <div key={food.id} className="flex justify-around items-center ">
-          <img
-            className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
-            src={food.image}
-            alt="foodimage"
-          />
-          <div className="flex flex-col">
-            <span className="text-md font-semibold">{food.name}</span>
-            <span>counter</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-md font-semibold m-2">GHS {food.price}</span>
-            <RiDeleteBin6Line
-              className="ml-12 cursor-pointer"
-              onClick={() => deleteOrder(food.id)}
-            />
-          </div>
-        </div>
+        <OrderedFoodComponent food={food} deleteOrder={deleteOrder} />
       ))}
       <div className="flex justify-center items-center m-2 mt-8 bg-[#d8f3d0] rounded-md">
         <span className="m-2 font-semibold text-[#90bf7e]">
@@ -67,3 +50,36 @@ const Ordertab = () => {
 };
 
 export default Ordertab;
+
+function OrderedFoodComponent({ food, deleteOrder }) {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div key={food.id} className="flex justify-around items-center ">
+      <img
+        className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
+        src={food.image}
+        alt="foodimage"
+      />
+      <div className="flex flex-col">
+        <span className="text-md font-semibold">{food.name}</span>
+        <div className="flex items-center justify-around border w-16">
+          <button onClick={() => setCounter(counter + 1)} className="font-bold">
+            +
+          </button>
+          <span className="font-semibold">{counter}</span>
+          <button onClick={() => setCounter(counter - 1)} className="font-bold">
+            -
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <span className="text-md font-semibold m-2">GHS {food.price}</span>
+        <RiDeleteBin6Line
+          className="ml-12 cursor-pointer"
+          onClick={() => deleteOrder(food.id)}
+        />
+      </div>
+    </div>
+  );
+}
