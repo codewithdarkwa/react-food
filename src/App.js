@@ -1,4 +1,4 @@
-import { Headertab, Slidetab } from "./components/Headertab";
+import { Headertab } from "./components/Headertab";
 import Ordertab from "./components/Ordertab";
 import { Category } from "./components/Category";
 import { FoodProvider } from "./context/Foodcontext";
@@ -6,16 +6,15 @@ import { FoodProvider } from "./context/Foodcontext";
 function App() {
   return (
     <FoodProvider>
-      <div className="flex flex-row justify-center w-full">
-        <div className="w-[70%] m-4">
+      <main className="flex flex-row justify-center w-full">
+        <section className="w-[70%] m-4">
           <Headertab />
-          <Slidetab />
           <Category />
-        </div>
-        <div className=" w-[30%] bg-[#f6fafb] h-auto mt-4 rounded">
+        </section>
+        <section className=" w-[30%] bg-[#f6fafb] h-auto  mt-4 rounded">
           <Ordertab />
-        </div>
-      </div>
+        </section>
+      </main>
     </FoodProvider>
   );
 }

@@ -51,27 +51,23 @@ const CategoryButton = ({ text, active, setActive }) => {
 };
 
 const FoodItem = () => {
-  const { foodData, foodOrder } = useContext(Foodcontext);
-  const [orderedFood, setOrderedFood] = useState([]);
-  let Ordered = (food) => {
-    setOrderedFood([...orderedFood, food]);
-  };
-  console.log(orderedFood);
+  const { foodData } = useContext(Foodcontext);
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
-        {foodData.map((food) => (
-          <FoodImage food={food} Ordered={Ordered} key={food.id} />
+        {foodData.map((food, index) => (
+          <FoodcardDetails food={food} key={index} />
         ))}
       </div>
     </>
   );
 };
 
-const FoodImage = ({ food, Ordered }) => {
+const FoodcardDetails = ({ food }) => {
+  const { addFoodToCart } = useContext(Foodcontext);
   return (
     <div>
-      <button className="cursor-pointer" onClick={() => Ordered(food)}>
+      <button className="cursor-pointer" onClick={() => addFoodToCart(food)}>
         <img
           className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
           src={food.image}

@@ -6,17 +6,13 @@ import { BiMinus } from "react-icons/bi";
 import { Foodcontext } from "../context/Foodcontext";
 
 const Ordertab = () => {
-  const { foodOrder } = useContext(Foodcontext);
-  const [orderedFood, setOrderedfood] = useState(foodOrder);
-  const deleteOrder = (id) => {
-    const filtered = orderedFood.filter((item) => item.id !== id);
-    setOrderedfood(filtered);
-  };
+  const { orderedFood } = useContext(Foodcontext);
+  console.log(orderedFood.map((food) => food.image));
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
       {orderedFood.map((food, i) => (
-        <OrderedFoodComponent key={i} food={food} deleteOrder={deleteOrder} />
+        <OrderedFoodComponent key={i} {...food} />
       ))}
       <Coupons />
       <Total />
@@ -26,9 +22,9 @@ const Ordertab = () => {
 
 export default Ordertab;
 
-function OrderedFoodComponent({ food, deleteOrder }) {
+function OrderedFoodComponent({ food }) {
   const [counter, setCounter] = useState(0);
-
+  const { removeFoodFromCart } = useContext(Foodcontext);
   return (
     <div key={food.id} className="flex justify-around items-center ">
       <img
@@ -50,7 +46,7 @@ function OrderedFoodComponent({ food, deleteOrder }) {
         <span className="text-md font-semibold m-2">GHS {food.price}</span>
         <RiDeleteBin6Line
           className="ml-12 cursor-pointer"
-          onClick={() => deleteOrder(food.id)}
+          onClick={() => removeFoodFromCart(food.id)}
         />
       </div>
     </div>
