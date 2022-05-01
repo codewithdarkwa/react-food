@@ -53,11 +53,10 @@ const CategoryButton = ({ text, active, setActive }) => {
 const FoodItem = () => {
   const { foodData, foodOrder } = useContext(Foodcontext);
   const [orderedFood, setOrderedFood] = useState([]);
-  console.log(foodOrder);
   let Ordered = (food) => {
     setOrderedFood([...orderedFood, food]);
   };
-  // console.log(orderedFood);
+  console.log(orderedFood);
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
