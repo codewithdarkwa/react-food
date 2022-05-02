@@ -7,13 +7,14 @@ import { Foodcontext } from "../context/Foodcontext";
 
 const Ordertab = () => {
   const { orderedFood } = useContext(Foodcontext);
-  console.log(orderedFood.map((food) => food.image));
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
-      {orderedFood.map((food, i) => (
-        <OrderedFoodComponent key={i} {...food} />
-      ))}
+      {orderedFood.length === 0 ? (
+        <OrderNow />
+      ) : (
+        orderedFood.map((food, i) => <OrderedFoodComponent key={i} {...food} />)
+      )}
       <Coupons />
       <Total />
     </>
@@ -22,18 +23,28 @@ const Ordertab = () => {
 
 export default Ordertab;
 
+function OrderNow() {
+  return (
+    <div className="text-center">
+      <span className="font-bold text-gray-700 text-xl">
+        You have no order <br />
+        Start Making Your Orders
+      </span>
+    </div>
+  );
+}
 function OrderedFoodComponent({ food }) {
   const [counter, setCounter] = useState(0);
   const { removeFoodFromCart } = useContext(Foodcontext);
   return (
-    <div key={food.id} className="flex justify-around items-center ">
+    <section className="flex justify-around items-center ">
       <img
         className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
         src={food.image}
         alt="foodimage"
       />
       <div className="flex flex-col">
-        <span className="text-md font-semibold">{food.name}</span>
+        <span className="text-md font-semibold m-2">{food.name}</span>
         <div className="flex items-center justify-around border w-16">
           <BiMinus
             onClick={() => (counter <= 0 ? 0 : setCounter(counter - 1))}
@@ -49,11 +60,13 @@ function OrderedFoodComponent({ food }) {
           onClick={() => removeFoodFromCart(food.id)}
         />
       </div>
-    </div>
+    </section>
   );
 }
 
 function Total() {
+  const { total } = useContext(Foodcontext);
+  console.log(total);
   return (
     <div className="flex flex-col m-4 mt-[5rem]">
       <div className="flex justify-between mx-10">
@@ -62,11 +75,11 @@ function Total() {
       </div>
       <div className="flex justify-between mx-10 my-2">
         <span className="font-semibold">Delivery</span>
-        <span className="font-semibold text-gray-500">GHS 9</span>
+        <span className="font-semibold text-gray-500">GHS 9.00</span>
       </div>
       <div className="flex justify-between mx-10">
         <span className="font-semibold">Taxes</span>
-        <span className="font-semibold text-gray-500">GHS 40</span>
+        <span className="font-semibold text-gray-500">GHS 0.00</span>
       </div>
       <div className="flex justify-between mx-10 my-4">
         <span className="font-semibold text-xl ">Total</span>

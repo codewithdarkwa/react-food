@@ -6,13 +6,14 @@ export default (state, action) => {
         ...state,
         orderedFood: [action.payload, ...state.orderedFood],
       };
-    case "DELETE_FOOD_FROM_CART":
+    case "REMOVE_FOOD_FROM_CART":
       return {
         ...state,
         orderedFood: state.orderedFood.filter(
           (food) => food.id !== action.payload
         ),
       };
+
     default:
       return state;
   }
