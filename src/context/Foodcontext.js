@@ -12,11 +12,17 @@ export const Foodcontext = createContext(initialState);
 export const FoodProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const getTotal = () => {
+    dispatch({
+      type: "GET_TOTAL",
+    });
+  };
   const addFoodToCart = (food) => {
     dispatch({
       type: "ADD_FOOD_TO_CART",
       payload: { food },
     });
+    getTotal();
   };
   const removeFoodFromCart = (id) => {
     dispatch({
