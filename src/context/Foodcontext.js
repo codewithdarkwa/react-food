@@ -5,6 +5,7 @@ let initialState = {
   foodData,
   orderedFood: [],
   total: 0,
+  qty: 0,
 };
 export const Foodcontext = createContext(initialState);
 
@@ -23,24 +24,13 @@ export const FoodProvider = ({ children }) => {
       payload: { id },
     });
   };
-  const increaseQty = (count) => {
-    dispatch({
-      type: "INCREASE_QTY",
-      payload: count,
-    });
-    const decreaseQty = (count) => {
-      dispatch({
-        type: "DECREASE_QTY",
-        payload: count,
-      });
-    };
-  };
   return (
     <Foodcontext.Provider
       value={{
         foodData: state.foodData,
         orderedFood: state.orderedFood,
         total: state.total,
+        qty: state.qty,
         addFoodToCart,
         removeFoodFromCart,
       }}

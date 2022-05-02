@@ -7,6 +7,7 @@ import { Foodcontext } from "../context/Foodcontext";
 
 const Ordertab = () => {
   const { orderedFood } = useContext(Foodcontext);
+
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
@@ -34,8 +35,8 @@ function OrderNow() {
   );
 }
 function OrderedFoodComponent({ food }) {
-  const [counter, setCounter] = useState(0);
-  const { removeFoodFromCart } = useContext(Foodcontext);
+  const { removeFoodFromCart, decreaseQty, increaseQty, qty } =
+    useContext(Foodcontext);
   return (
     <section className="flex justify-around items-center ">
       <img
@@ -46,11 +47,9 @@ function OrderedFoodComponent({ food }) {
       <div className="flex flex-col">
         <span className="text-md font-semibold m-2">{food.name}</span>
         <div className="flex items-center justify-around border w-16">
-          <BiMinus
-            onClick={() => (counter <= 0 ? 0 : setCounter(counter - 1))}
-          />
-          <span className="font-semibold">{counter}</span>
-          <IoAddOutline onClick={() => setCounter(counter + 1)} />
+          <BiMinus onClick={() => {}} className="cursor-pointer" />
+          <span className="font-semibold">{qty}</span>
+          <IoAddOutline onClick={() => {}} className="cursor-pointer" />
         </div>
       </div>
       <div className="flex flex-col">
@@ -66,16 +65,15 @@ function OrderedFoodComponent({ food }) {
 
 function Total() {
   const { total } = useContext(Foodcontext);
-  console.log(total);
   return (
     <div className="flex flex-col m-4 mt-[5rem]">
       <div className="flex justify-between mx-10">
         <span className="font-semibold">Sub Total</span>
-        <span className="font-semibold text-gray-500">GHS 259.30</span>
+        <span className="font-semibold text-gray-500">GHS {total}</span>
       </div>
       <div className="flex justify-between mx-10 my-2">
         <span className="font-semibold">Delivery</span>
-        <span className="font-semibold text-gray-500">GHS 9.00</span>
+        <span className="font-semibold text-gray-500">GHS 0.00</span>
       </div>
       <div className="flex justify-between mx-10">
         <span className="font-semibold">Taxes</span>
@@ -83,9 +81,9 @@ function Total() {
       </div>
       <div className="flex justify-between mx-10 my-4">
         <span className="font-semibold text-xl ">Total</span>
-        <span className="font-bold">GHS 395.40</span>
+        <span className="font-bold">GHS {total}</span>
       </div>
-      <button className="text-white bg-[#449726] p-2 m-2 w-[20rem] mx-12 rounded-full text-center">
+      <button className="text-white bg-[#449726] p-2 w-[100%] mx-1 rounded-full text-center">
         Order and checkout
       </button>
     </div>

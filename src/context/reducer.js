@@ -5,6 +5,7 @@ export default (state, action) => {
       return {
         ...state,
         orderedFood: [action.payload, ...state.orderedFood],
+        total: state.orderedFood.reduce((acc, val) => (acc += val.price), 0),
       };
     case "REMOVE_FOOD_FROM_CART":
       return {
@@ -13,7 +14,6 @@ export default (state, action) => {
           (food) => food.id !== action.payload
         ),
       };
-
     default:
       return state;
   }
