@@ -11,9 +11,15 @@ const Ordertab = () => {
   return (
     <>
       <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
-      {orderedFood.map((food, i) => (
-        <OrderedFoodComponent food={food} key={i} />
-      ))}
+      {orderedFood.length === 0 ? (
+        <OrderNow />
+      ) : (
+        <div className=" h-[30vh] overflow-y-scroll">
+          {orderedFood.map((food, i) => (
+            <OrderedFoodComponent {...food} key={i} />
+          ))}
+        </div>
+      )}
       <Coupons />
       <Total />
     </>
@@ -36,14 +42,14 @@ function OrderedFoodComponent({ food }) {
   const { removeFoodFromCart, qty } = useContext(Foodcontext);
 
   return (
-    <section className="flex justify-around items-center ">
+    <section className="flex justify-around items-center">
       <img
         className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
-        src={food.food.image}
-        alt="foodimage"
+        src={food.image}
+        alt={food.image}
       />
-      <div className="flex flex-col">
-        <span className="text-md font-semibold m-2">{food.food.name}</span>
+      <div className="flex flex-col ">
+        <span className="text-md font-semibold m-2">{food.name}</span>
         <div className="flex items-center justify-around border w-16">
           <BiMinus onClick={() => {}} className="cursor-pointer" />
           <span className="font-semibold">{qty}</span>
@@ -51,10 +57,10 @@ function OrderedFoodComponent({ food }) {
         </div>
       </div>
       <div className="flex flex-col">
-        <span className="text-md font-semibold m-2">GHS {food.food.price}</span>
+        <span className="text-md font-semibold m-2">GHS {food.price}</span>
         <RiDeleteBin6Line
           className="ml-12 cursor-pointer"
-          onClick={() => removeFoodFromCart(food.food.id)}
+          onClick={() => removeFoodFromCart(food.id)}
         />
       </div>
     </section>

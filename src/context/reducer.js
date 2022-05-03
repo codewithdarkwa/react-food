@@ -16,8 +16,8 @@ export default (state, action) => {
     case "REMOVE_FOOD_FROM_CART":
       return {
         ...state,
-        orderedFood: state.orderedFood.filter(
-          (food) => food.id !== action.payload
+        orderedFood: console.log(
+          state.orderedFood.filter((x) => x.food.id !== action.payload)
         ),
       };
     default:
