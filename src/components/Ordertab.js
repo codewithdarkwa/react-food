@@ -10,7 +10,12 @@ const Ordertab = () => {
 
   return (
     <>
-      <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
+      <div className="flex justify-around items-center">
+        <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
+        <span className="font-semibold text-gray-500">
+          You have {orderedFood.length} foods in cart
+        </span>
+      </div>
       {orderedFood.length === 0 ? (
         <OrderNow />
       ) : (
