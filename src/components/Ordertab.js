@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoAddOutline } from "react-icons/io5";
@@ -12,9 +12,13 @@ const Ordertab = () => {
     <>
       <div className="flex justify-around items-center">
         <h2 className="m-4 ml-10 text-xl font-bold"> My Order</h2>
-        <span className="font-semibold text-gray-500">
-          You have {orderedFood.length} foods in cart
-        </span>
+        {orderedFood.length !== 0 ? (
+          <span className="font-semibold text-gray-500">
+            You have {orderedFood.length} foods in cart
+          </span>
+        ) : (
+          ""
+        )}
       </div>
       {orderedFood.length === 0 ? (
         <OrderNow />
@@ -44,12 +48,11 @@ function OrderNow() {
   );
 }
 function OrderedFoodComponent({ food }) {
-  const { removeFoodFromCart, qty } = useContext(Foodcontext);
-
+  const { removeFoodFromCart, qty, increaseQty } = useContext(Foodcontext);
   return (
     <section className="flex justify-around items-center">
       <img
-        className="w-28 h-16 rounded-md object-cover m-4 shadow-lg"
+        className="w-28 h-16 rounded-md object-cover m-4 shadow-lg cursor-pointer"
         src={food.image}
         alt={food.image}
       />
@@ -58,7 +61,10 @@ function OrderedFoodComponent({ food }) {
         <div className="flex items-center justify-around border w-16">
           <BiMinus onClick={() => {}} className="cursor-pointer" />
           <span className="font-semibold">{qty}</span>
-          <IoAddOutline onClick={() => {}} className="cursor-pointer" />
+          <IoAddOutline
+            onClick={() => increaseQty(food.id)}
+            className="cursor-pointer"
+          />
         </div>
       </div>
       <div className="flex flex-col">

@@ -17,6 +17,12 @@ export const FoodProvider = ({ children }) => {
       type: "GET_TOTAL",
     });
   };
+  const increaseQty = (food) => {
+    dispatch({
+      type: "INCREASE_QTY",
+      payload: food,
+    });
+  };
   const addFoodToCart = (food) => {
     dispatch({
       type: "ADD_FOOD_TO_CART",
@@ -30,6 +36,7 @@ export const FoodProvider = ({ children }) => {
       payload: { id },
     });
   };
+
   return (
     <Foodcontext.Provider
       value={{
@@ -37,6 +44,7 @@ export const FoodProvider = ({ children }) => {
         orderedFood: state.orderedFood,
         total: state.total,
         qty: state.qty,
+        increaseQty,
         addFoodToCart,
         removeFoodFromCart,
       }}

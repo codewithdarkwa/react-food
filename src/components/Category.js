@@ -52,6 +52,7 @@ const CategoryButton = ({ text, active, setActive }) => {
 
 const FoodItem = () => {
   const { foodData } = useContext(Foodcontext);
+
   return (
     <>
       <div className="flex flex-wrap m-2 justify-around gap-2">
@@ -64,7 +65,9 @@ const FoodItem = () => {
 };
 
 const FoodcardDetails = ({ food }) => {
-  const { addFoodToCart } = useContext(Foodcontext);
+  const { addFoodToCart, orderedFood } = useContext(Foodcontext);
+  const [isInCart, setisInCart] = useState(false);
+
   return (
     <div>
       <button className="cursor-pointer" onClick={() => addFoodToCart(food)}>

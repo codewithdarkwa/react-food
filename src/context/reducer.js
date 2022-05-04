@@ -16,8 +16,24 @@ export default (state, action) => {
     case "REMOVE_FOOD_FROM_CART":
       return {
         ...state,
+        orderedFood: state.orderedFood.filter((food) => {
+          const newItems = food.food.id !== action.payload.id;
+
+          return newItems;
+        }),
+      };
+    case "INCREASE_QTY":
+      return {
+        ...state,
         orderedFood: console.log(
-          state.orderedFood.filter((x) => x.food.id !== action.payload)
+          state.orderedFood.map((x) =>
+            x.food.id === action.payload
+              ? {
+                  ...x.food,
+                  qty: x.food.qty + 1,
+                }
+              : x.food
+          )
         ),
       };
     default:
