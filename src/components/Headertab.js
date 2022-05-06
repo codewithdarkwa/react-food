@@ -10,7 +10,7 @@ export const Headertab = () => {
 
 const Slide = () => {
   return (
-    <div className="flex mt-7 flex-row w-[100%]  justify-around items-center bg-[#daf4d1] rounded-2xl">
+    <div className="flex mt-7 flex-row w-[100%] md:flex-wrap justify-around items-center bg-[#daf4d1] rounded-2xl">
       <div className="m-2 flex flex-col">
         <h1 className="text-4xl text-[#55af33] text-bold m-2 ">
           You don't need a silver <br />
@@ -21,7 +21,7 @@ const Slide = () => {
         </button>
       </div>
       <img
-        className="mb-2 w-[24rem]"
+        className="mb-2 w-[20rem] "
         src={require("../images/sandwich.png")}
         alt="foodImage"
       />
@@ -30,7 +30,7 @@ const Slide = () => {
 };
 const Header = () => {
   return (
-    <div className=" flex flex-row items-center justify-between">
+    <div className=" flex flex-row items-center justify-between ">
       <div className="flex">
         <HiOutlineMenuAlt2 size={30} className="cursor-pointer" />
         <h3 className="font-normal text-lg ml-4 ">125 Eastern Cosmo St.</h3>

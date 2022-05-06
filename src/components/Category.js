@@ -65,8 +65,8 @@ const FoodItem = () => {
 };
 
 const FoodcardDetails = ({ food }) => {
-  const { addFoodToCart, orderedFood } = useContext(Foodcontext);
-  const [isInCart, setisInCart] = useState(false);
+  console.log(food);
+  const { addFoodToCart } = useContext(Foodcontext);
 
   return (
     <div>
