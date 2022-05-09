@@ -65,12 +65,15 @@ const FoodItem = () => {
 };
 
 const FoodcardDetails = ({ food }) => {
-  console.log(food);
-  const { addFoodToCart } = useContext(Foodcontext);
-
+  const { addFoodToCart, orderedFood } = useContext(Foodcontext);
+  const addToCart = (foods) => {
+    orderedFood.find((item) => item.food === foods)
+      ? alert("already added to cart")
+      : addFoodToCart(foods);
+  };
   return (
     <div>
-      <button className="cursor-pointer" onClick={() => addFoodToCart(food)}>
+      <button className="cursor-pointer" onClick={() => addToCart(food)}>
         <img
           className="h-28 w-[10rem] object-cover rounded-lg hover:shadow-xl"
           src={food.image}
