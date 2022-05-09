@@ -35,6 +35,7 @@ export const FoodProvider = ({ children }) => {
       type: "REMOVE_FOOD_FROM_CART",
       payload: { id },
     });
+    getTotal();
   };
 
   return (
