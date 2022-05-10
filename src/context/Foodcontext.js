@@ -17,12 +17,6 @@ export const FoodProvider = ({ children }) => {
       type: "GET_TOTAL",
     });
   };
-  const increaseQty = (food) => {
-    dispatch({
-      type: "INCREASE_QTY",
-      payload: food,
-    });
-  };
   const addFoodToCart = (food) => {
     dispatch({
       type: "ADD_FOOD_TO_CART",
@@ -37,7 +31,12 @@ export const FoodProvider = ({ children }) => {
     });
     getTotal();
   };
-
+  const increaseQty = (food) => {
+    dispatch({
+      type: "INCREASE_QTY",
+      payload: { food },
+    });
+  };
   return (
     <Foodcontext.Provider
       value={{

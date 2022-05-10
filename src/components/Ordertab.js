@@ -48,7 +48,8 @@ function OrderNow() {
   );
 }
 function OrderedFoodComponent({ food }) {
-  const { removeFoodFromCart, qty } = useContext(Foodcontext);
+  const { removeFoodFromCart, qty, increaseQty } = useContext(Foodcontext);
+  console.log(qty);
   return (
     <section className="flex justify-around items-center">
       <img

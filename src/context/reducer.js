@@ -19,21 +19,16 @@ export default (state, action) => {
         ...state,
         total: state.orderedFood
           .map((x) => x.food.price)
-          .reduce((acc, val) => acc + val),
+          .reduce((acc, val) => acc + val, 0),
       };
     case "INCREASE_QTY":
       return {
         ...state,
-        orderedFood: console.log(
-          state.orderedFood.map((x) =>
-            x.food.id === action.payload
-              ? {
-                  ...x.food,
-                  qty: x.food.qty + 1,
-                }
-              : x.food
-          )
-        ),
+        qty: state.orderedFood.find(
+          (food) => food.food.id === action.payload.id
+        )
+          ? (state.orderedFood.qty += 1)
+          : "",
       };
     default:
       return state;
