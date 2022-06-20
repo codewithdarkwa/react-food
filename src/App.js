@@ -6,7 +6,7 @@ import { FoodProvider } from "./context/Foodcontext";
 function App() {
   return (
     <FoodProvider>
-      <main className="flex flex-row justify-center w-full ">
+      <main className="flex justify-center w-full ">
         <section className="w-[70%] m-4">
           <Headertab />
           <Category />
