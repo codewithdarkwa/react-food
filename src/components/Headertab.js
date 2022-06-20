@@ -36,7 +36,7 @@ const Header = () => {
         <h3 className="font-normal text-lg ml-4 ">125 Eastern Cosmo St.</h3>
       </div>
       <input
-        className="outline-none border-none  px-2 py-[0.5rem] bg-gray-100 rounded-xl w-[60%] "
+        className="outline-none border-none  px-2 py-[0.5rem] bg-gray-100 rounded-xl w-[50%] "
         type="search"
         placeholder="What would you like to eat today?"
       />
