@@ -48,8 +48,7 @@ function OrderNow() {
   );
 }
 function OrderedFoodComponent({ food }) {
-  const { removeFoodFromCart, qty, increaseQty } = useContext(Foodcontext);
-  console.log(qty);
+  const { removeFoodFromCart, qty,  } = useContext(Foodcontext);
   return (
     <section className="flex justify-around items-center">
       <img
@@ -97,7 +96,7 @@ function Total() {
         <span className="font-semibold text-xl ">Total</span>
         <span className="font-bold">GHS {total}</span>
       </div>
-      <button className="text-white bg-[#449726] p-2 w-[100%] mx-1 rounded-full text-center">
+      <button className="text-white bg-[#449726] p-2 w-[100%] mx-1 rounded-full text-center" onClick={() =>alert('Not yet implemented')}>
         Order and checkout
       </button>
     </div>
