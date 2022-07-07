@@ -16,7 +16,7 @@ function App() {
         </section>
       </main>
     </FoodProvider>
-  );
+  ); 
 }
 
 export default App;
