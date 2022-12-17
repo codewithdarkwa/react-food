@@ -18,5 +18,4 @@ function App() {
     </FoodProvider>
   ); 
 }
-
 export default App;
